@@ -7,9 +7,7 @@ form.addEventListener('submit', event => {
     let validationPassed = false;
 
     //one of first 3 checkboxes must be checked
-    checkBoxes.forEach(checkbox => {
-        validationPassed = checkbox.checked;
-    });
+    validationPassed = checkBoxes[0].checked || checkBoxes[1].checked || checkBoxes[2].checked;
 
     //check if name field does not contain "captcha" word
     validationPassed &&= !nameInput.value.toLowerCase().includes("captcha");

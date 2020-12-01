@@ -1,40 +1,42 @@
 ﻿@model ZennoLab.Models.UserDataSetViewModel
+@using ZennoLab.Models
 @{
     ViewData["Title"] = "ZennoLab Demo";
 }
 
-<form method="post" name="main" enctype="multipart/form-data">
-    <input type="text" minlength="4" maxlength="8" autocomplete="off" placeholder="Name" name="description" asp-for="Name" required />
-    <input type="date" placeholder="Date" name="description" asp-for="Date" required/>
+<form id="main" method="post" enctype="multipart/form-data">
+    <input type="text" minlength="4" maxlength="8" autocomplete="off" placeholder="Name" asp-for="Name" required />
+    <input type="date" placeholder="Date" asp-for="Date" required/>
 
+    
     <fieldset>
-        <input type="checkbox" name="cyrillicSymbols" asp-for="HasCyrillicSymbols" />
-        <label for="cyrillicSymbols">Contains cyrillic symbols</label>
+        <input type="checkbox" asp-for="HasCyrillicSymbols" form="main" />
+        <label for="HasCyrillicSymbols">Contains cyrillic symbols</label>
     </fieldset>
 
     <fieldset>
-        <input type="checkbox" name="latinSymbols" asp-for="HasLatinSymbols" />
-        <label for="latinSymbols">Contains latin symbols</label>
+        <input type="checkbox" asp-for="HasLatinSymbols" form="main" />
+        <label for="HasLatinSymbols">Contains latin symbols</label>
     </fieldset>
 
     <fieldset>
-        <input type="checkbox" name="digits" asp-for="HasDigits" />
-        <label for="digits">Contains digits</label>
+        <input type="checkbox" asp-for="HasDigits" form="main" />
+        <label for="HasDigits">Contains digits</label>
     </fieldset>
 
     <fieldset>
-        <input type="checkbox" name="specialSymbols" asp-for="HasSpecialSymbols"  />
-        <label for="specialSymbols">Contains special symbols</label>
+        <input type="checkbox" asp-for="HasSpecialSymbols"  form="main" />
+        <label for="HasSpecialSymbols">Contains special symbols</label>
     </fieldset>
 
     <fieldset>
-        <input type="checkbox" name="caseSensitive" asp-for="IsCaseSensitive" />
-        <label for="caseSensitive">Case Sensitive</label>
+        <input type="checkbox" asp-for="IsCaseSensitive" form="main" />
+        <label for="IsCaseSensitive">Case Sensitive</label>
     </fieldset>
 
     <select asp-for="AnswersSource" asp-items="Html.GetEnumSelectList<PictureAnswers>()"></select>
     <input type="file" name="file" required />
-    <button type="submit" class="btn-primary" asp-action="Upload">Upload</button>
+    <button type="submit" class="btn-primary" asp-action="Upload" asp-controller="Home">Upload</button>
 </form>
 
 <table>
@@ -46,5 +48,11 @@
             Date
         </th>
     </tr> 
-    
+    @foreach (var file in ViewData["FilesAdded"] as ICollection<FileMetadataModel>)
+    {
+        <tr>
+            <th>@file.Name</th>
+            <td>@file.CreatedDate</td>
+        </tr>
+    }
 </table>
