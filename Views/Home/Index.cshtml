@@ -1,7 +1,50 @@
-﻿@{
+﻿@model ZennoLab.Models.UserDataSetViewModel
+@{
     ViewData["Title"] = "ZennoLab Demo";
 }
 
-<div>
-    <p>FORM</p>
-</div>
+<form method="post" name="main" enctype="multipart/form-data">
+    <input type="text" minlength="4" maxlength="8" autocomplete="off" placeholder="Name" name="description" asp-for="Name" required />
+    <input type="date" placeholder="Date" name="description" asp-for="Date" required/>
+
+    <fieldset>
+        <input type="checkbox" name="cyrillicSymbols" asp-for="HasCyrillicSymbols" />
+        <label for="cyrillicSymbols">Contains cyrillic symbols</label>
+    </fieldset>
+
+    <fieldset>
+        <input type="checkbox" name="latinSymbols" asp-for="HasLatinSymbols" />
+        <label for="latinSymbols">Contains latin symbols</label>
+    </fieldset>
+
+    <fieldset>
+        <input type="checkbox" name="digits" asp-for="HasDigits" />
+        <label for="digits">Contains digits</label>
+    </fieldset>
+
+    <fieldset>
+        <input type="checkbox" name="specialSymbols" asp-for="HasSpecialSymbols"  />
+        <label for="specialSymbols">Contains special symbols</label>
+    </fieldset>
+
+    <fieldset>
+        <input type="checkbox" name="caseSensitive" asp-for="IsCaseSensitive" />
+        <label for="caseSensitive">Case Sensitive</label>
+    </fieldset>
+
+    <select asp-for="AnswersSource" asp-items="Html.GetEnumSelectList<PictureAnswers>()"></select>
+    <input type="file" name="file" required />
+    <button type="submit" class="btn-primary" asp-action="Upload">Upload</button>
+</form>
+
+<table>
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Date
+        </th>
+    </tr> 
+    
+</table>

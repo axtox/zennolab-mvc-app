@@ -1,13 +1,31 @@
-﻿.btn-primary {
-  color: #fff;
-  background-color: #1b6ec2;
-  border-color: #1861ac;
-}
-
-html {
+﻿html {
   font-size: 14px;
   position: relative;
   min-height: 100%;
+}
+
+main {
+  margin-top: 10%;
+  display: flex;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+form * {
+  flex-shrink: 3;
+  margin: 5px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  padding: 3px;
+  border-radius: 3px;
 }
 
 .text-danger {
