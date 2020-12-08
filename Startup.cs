@@ -10,6 +10,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using ZennoLab.Models;
+using ZennoLab.Services;
+using ZennoLab.Services.Validation;
 
 namespace ZennoLab
 {
@@ -29,12 +31,15 @@ namespace ZennoLab
             services.AddControllersWithViews();
 
             if (Environment.IsDevelopment())
-                services.AddDbContext<FileMetadataDbContext>(options =>
-                        options.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
+                services.AddScoped<IMetadataStorage, FileMetadataMock>();
             else {
                 services.AddDbContext<FileMetadataDbContext>(options =>
                         options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionMsSql")));
+                services.AddScoped<IMetadataStorage, FileMetadataDbContext>();
             }
+
+            services.AddScoped<IValidationService, DatasetFileValidationService>(); // change your validation logic here
+            services.AddScoped<IDatasetStorageService, DatasetStorageService>(); // change the way you store dataset
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

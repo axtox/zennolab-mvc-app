@@ -1,12 +1,13 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
-namespace ZennoLab.Models {
-
+namespace ZennoLab.Models
+{
     public enum PictureAnswers { None, FileName, SeparateFile }
 
-    public class UserDataSetViewModel {
-
+    public class UserDataSetViewModel 
+    {
         [MinLength(4)]
         [MaxLength(8)]
         public string Name {get;set;}
@@ -25,5 +26,7 @@ namespace ZennoLab.Models {
         public bool IsCaseSensitive {get;set;}
 
         public PictureAnswers AnswersSource {get;set;}
+
+        public IFormFile File {get;set;}
     }
 }
