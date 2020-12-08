@@ -4,6 +4,8 @@
     ViewData["Title"] = "ZennoLab Demo";
 }
 
+<div class="message">@ViewData["Message"]</div>
+
 <form id="main" method="post" enctype="multipart/form-data">
     <input type="text" minlength="4" maxlength="8" autocomplete="off" placeholder="Name" asp-for="Name" required />
     <input type="date" placeholder="Date" asp-for="Date" required/>
@@ -36,7 +38,7 @@
 
     <select asp-for="AnswersSource" asp-items="Html.GetEnumSelectList<PictureAnswers>()"></select>
     <input type="file" name="file" required />
-    <button type="submit" class="btn-primary" asp-action="Upload" asp-controller="Home">Upload</button>
+    <button type="submit" class="btn-primary" asp-action="Upload" asp-controller="FileUpload">Upload</button>
 </form>
 
 <table>

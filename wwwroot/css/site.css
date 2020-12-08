@@ -8,6 +8,7 @@ main {
   margin-top: 10%;
   display: flex;
   justify-content: space-around;
+  flex-wrap: wrap;
 }
 
 form {
@@ -30,4 +31,9 @@ form * {
 
 .text-danger {
   color: red;
+}
+
+.message {
+  flex: 0 1 100%;
+  text-align: center;
 }
