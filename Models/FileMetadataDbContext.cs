@@ -3,15 +3,18 @@ using System.Linq;
 using Microsoft.EntityFrameworkCore;
 
 namespace ZennoLab.Models {
-    public interface IMetadataStorage {
+    public interface IMetadataStorage 
+    {
         IEnumerable<FileMetadataModel> RetrieveDataSetMetadata();
         void AddFileMetadata(FileMetadataModel fileMetadata);
     }
 
-    public class FileMetadataMock : IMetadataStorage {
+    public class FileMetadataMock : IMetadataStorage 
+    {
         private ICollection<FileMetadataModel> FilesMetadata { get; set; }
 
-        public FileMetadataMock() {
+        public FileMetadataMock() 
+        {
             FilesMetadata = new List<FileMetadataModel>();
         }
 
@@ -26,7 +29,8 @@ namespace ZennoLab.Models {
         }
     }
 
-    public class FileMetadataDbContext : DbContext, IMetadataStorage {
+    public class FileMetadataDbContext : DbContext, IMetadataStorage 
+    {
         public FileMetadataDbContext (DbContextOptions<FileMetadataDbContext> options)
                     : base(options)
         {
